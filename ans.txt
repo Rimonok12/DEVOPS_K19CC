@@ -1,0 +1,153 @@
+1. write a shell script function that take name of a file or directory as unlimited argument and reports if it is a regular file, a directory, or another type of file. 
+Also perform an ls command against the file or directory with the long listing option. Write for all the mention details . also create function function “file_count” and call it in your script. If you use variable in your function, remember to make it a local variable. [5]
+
+
+------------------
+
+ANS: 
+
+#!/bin/bash
+
+func(){
+if [ -d $1 ]
+then
+echo "The given argument is the directory."
+file_count `ls $1`
+ls -l $1
+elif [ -f $1 ]
+then
+echo "The given argument is the file."
+else
+echo "The given argument is some another type of file"
+fi
+}
+
+file_count(){
+files=$#
+echo "The number of files in the directory is $files"
+}
+
+func test_dir
+
+
+
+
+----------------------------------------------------------------------------------------------------
+
+
+2. You need to find a file named myfile.txt somewhere in your Linux file system. Which is the correct command to do this? [2]
+
+--------------------
+
+ANS: The command is : 
+
+find / -name "myfile.txt"
+
+----------------------------------------------------------------------------------------------------
+
+
+3. Write a scipt to Lock down the file or directory permission for folder1 files as per following requirement  [8]
+mkdir folder1
+touch f_{1..3}
+
+.file.sh folder1/
+
+
+Remove all permissions for groups and others.
+Provide directory name through command-line.
+After running script all files in the given directory, Only should have all the permissions.
+But remember don't add any permission to user only change to others and groups.
+
+------------------------
+
+ANS :
+
+
+Make a file inside an Folder Name "file" : 
+----> mkdir folder1
+----> touch file.sh
+
+Cd folder1/ 
+
+
+The Command inside the "file.sh" file :
+
+echo "The name of all files having all permissions :"
+
+for file in *
+do
+
+if [ -f $file ]
+then
+
+if [ -r $file -a -w $file -a -x $file ]
+then
+
+ls -l $file
+
+fi
+
+fi
+
+done
+
+
+For  Execute permission : 
+
+$ chmod 777 main.sh
+
+For run the script : 
+
+$ bash main.sh
+
+
+-----------
+-----------
+(base) Rimons-Air:~ rimon_dn$ nano file.sh
+(base) Rimons-Air:~ rimon_dn$ chmod 777 file.sh
+(base) Rimons-Air:~ rimon_dn$ bash file.sh
+The name of all files having all permissions :
+file.sh: line 6: [: MY: binary operator expected
+file.sh: line 6: [: PYTHON: binary operator expected
+-rwxrwxrwx  1 rimon_dn  staff  168 Feb  7 14:49 file.sh
+------------
+------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+^G Get Help  ^O WriteOut  ^R Read File ^Y Prev Pg   ^K Cut Text  ^C Cur Pos   
+^X Exit      ^J Justify   ^W Where is  ^V Next Pg   ^U UnCut Text^T To Spell  
+
+
+
+ 
+
