@@ -1,0 +1,46 @@
+{
+    "AttributeDefinitions": [{
+            "AttributeName": "name ",
+            "AttributeType": "S"
+        },
+        {
+            "AttributeName": "reg_no",
+            "AttributeType": "N"
+        }
+    ],
+    "TableName": "Student_info",
+    "KeySchema": [{
+        "AttributeName": "name ",
+        "KeyType": "HASH"
+    }],
+    "TableStatus": "ACTIVE",
+    "CreationDateTime": "2023-04-12T08:57:50.378Z",
+    "ProvisionedThroughput": {
+        "LastIncreaseDateTime": "1970-01-01T00:00:00.000Z",
+        "LastDecreaseDateTime": "1970-01-01T00:00:00.000Z",
+        "NumberOfDecreasesToday": 0,
+        "ReadCapacityUnits": 3,
+        "WriteCapacityUnits": 3
+    },
+    "TableSizeBytes": 126,
+    "ItemCount": 2,
+    "TableArn": "arn:aws:dynamodb:ddblocal:000000000000:table/Student_info",
+    "GlobalSecondaryIndexes": [{
+        "IndexName": "idx_regNo",
+        "KeySchema": [{
+            "AttributeName": "reg_no",
+            "KeyType": "HASH"
+        }],
+        "Projection": {
+            "ProjectionType": "ALL"
+        },
+        "IndexStatus": "ACTIVE",
+        "ProvisionedThroughput": {
+            "ReadCapacityUnits": 3,
+            "WriteCapacityUnits": 3
+        },
+        "IndexSizeBytes": 126,
+        "ItemCount": 2,
+        "IndexArn": "arn:aws:dynamodb:ddblocal:000000000000:table/Student_info/index/idx_regNo"
+    }]
+}
