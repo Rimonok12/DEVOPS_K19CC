@@ -1,0 +1,10 @@
+#
+- Rimon:
+    age: 18
+    height: 6 feet, 8 inch.
+    skills: web Developer, UI/UX, Cloud Engineer
+# A list of tasty fruits
+- Apple
+- Orange
+- Strawberry
+- Mango

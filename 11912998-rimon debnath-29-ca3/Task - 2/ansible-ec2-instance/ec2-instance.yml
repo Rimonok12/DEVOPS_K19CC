@@ -1,0 +1,76 @@
+# - name: Create EC2 instance
+#   hosts: localhost
+#   connection: local
+#   gather_facts: no
+#   # vars:
+#   #   instance_type: t2.micro
+#   #   ami: ami-06e46074ae430fba6
+#   #   region: us-east-1
+#   #   key_name: ansible
+#   #   security_group: launch-wizard-1
+#   #   tag_name: Ec2_ansible
+#   tasks:
+#     - name: Ec2_ansi-instance
+#       ec2:
+#         key_name: ansible
+#         instance_type: t2.micro
+#         image: ami-06e46074ae430fba6
+#         region: us-east-1
+#         group: launch-wizard-1
+#         instance_tags:
+#          Name: Ec2_ansi-instance
+#         wait: true
+#         assign_public_ip: yes
+
+#       register: ec2
+# - name: Print Public IP Address
+#       debug:
+#   msg: "Instance IP address is {{ ec2_instance.instances[0].public_ip }}"
+
+# - name: Ansible test
+#   hosts: localhost
+#   tasks:
+#     - name: Launch EC2
+#       amazon.aws.ec2_instance:
+#         key_name: ansible
+#         instance_type: t2.micro
+#         image_id: ami-06e46074ae430fba6
+#         region: us-east-1
+#         wait: yes
+#         security_group: launch-wizard-1
+#         count: 1
+#         vpc_subnet_id: subnet-05254a991d88fde53
+#         # assign_public_ip: yes
+#         # aws_access_key: AKIASF6DGM6UES2MWDOS
+#         # aws_secret_key: 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
+#       register: ec2
+
+---
+- name: creating and launching new EC2 instances using ansible
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  tags: creating_ec2_instance
+
+  vars:
+    instance_type: t2.micro
+    image: ami-06e46074ae430fba6
+    wait: yes
+    count: 1
+    region: us-east-1
+    security_group: launch-wizard-1
+    instance_name_new: rimon_ca3-Ansible-test
+    keypairname: ansible
+
+  tasks:
+    - name: Task#1 - Create and launch new EC2 instance
+      amazon.aws.ec2_instance:
+        key_name: '{{keypairname}}'
+        instance_type: '{{instance_type}}'
+        image_id: '{{image}}'
+        wait: '{{wait}}'
+        security_group: '{{security_group}}'
+        region: '{{region}}'
+        count: '{{count}}'
+        tags:
+          Name: '{{instance_name_new}}'
